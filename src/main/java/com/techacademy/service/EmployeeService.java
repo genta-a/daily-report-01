@@ -54,7 +54,7 @@ public class EmployeeService {
 
 
     @Transactional
-    public ErrorKinds update(Employee employee, String code) {
+    public ErrorKinds update(String code, Employee employee) {
         // DB検索結果を更新対象としてupdateEmployeeに格納
         Employee updateEmployee = findByCode(code);
 
