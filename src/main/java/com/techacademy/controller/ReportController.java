@@ -39,7 +39,7 @@ public class ReportController {
         return "reports/list";
     }
 }
-
+/*
 
     // 従業員詳細画面
     @GetMapping(value = "/{code}/")

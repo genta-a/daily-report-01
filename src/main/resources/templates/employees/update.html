@@ -53,12 +53,14 @@
                                                 <option th:each="item:${T(com.techacademy.entity.Employee.Role).values()}" th:value="${item}" th:text="${item.getValue()}" th:selected="*{role} == ${item}">
                                                 </select>
                                             </div>
-                                    </div>
+                                        </div>
+                                    </tr>
                                 </div>
                                 <p class="mt-5">
                                     <input type="submit" value="更新" class="btn btn-primary">
                                     <a th:href="@{/employees}" class="btn btn-primary">戻る</a>
                                 </p>
+                                </div>
                             </form>
                         </div>
                     </div>

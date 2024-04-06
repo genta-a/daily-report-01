@@ -54,9 +54,9 @@ public class EmployeeService {
 
 
     @Transactional
-    public ErrorKinds update(Employee employee) {
+    public ErrorKinds update(Employee employee, String code) {
         // DB検索結果を更新対象としてupdateEmployeeに格納
-        Employee updateEmployee = employeeRepository.findById(employee.getCode()).get();
+        Employee updateEmployee = findByCode(code);
 
         // 入力データのパスワードが空白でないならパスワードチェックを行なう。
         if (!"".equals(employee.getPassword())) {
