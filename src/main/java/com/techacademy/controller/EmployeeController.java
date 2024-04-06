@@ -100,10 +100,15 @@ public class EmployeeController {
 
     // 従業員更新画面
     @GetMapping(value = "/{code}/update")
-    public String edit(@PathVariable String code, Model model){
+    public String edit(Employee employee, @PathVariable String code, Model model){
         // Modelに登録
-        model.addAttribute("employee", employeeService.findByCode(code));
-        return "employees/update";
+        if(code != null) {
+            model.addAttribute("employee", employeeService.findByCode(code));
+            return "employees/update";
+        }else {
+            model.addAttribute("employee", employee);
+            return "employee/update";
+            }
     }
 
     // 従業員更新処理
@@ -112,7 +117,7 @@ public class EmployeeController {
 
         //エラーある場合に更新画面に戻る
         if (res.hasErrors()) {
-            return edit(code, model);
+            return edit(employee, null, model);
         }
 
         try {
@@ -120,13 +125,13 @@ public class EmployeeController {
 
             if (ErrorMessage.contains(result)) {
                 model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
-                return edit(code, model);
+                return edit(employee, code, model);
             }
 
         } catch (DataIntegrityViolationException e) {
             model.addAttribute(ErrorMessage.getErrorName(ErrorKinds.DUPLICATE_EXCEPTION_ERROR),
                     ErrorMessage.getErrorValue(ErrorKinds.DUPLICATE_EXCEPTION_ERROR));
-            return edit(code, model);
+            return edit(employee, code, model);
         }
 
         // 一覧画面にリダイレクト
