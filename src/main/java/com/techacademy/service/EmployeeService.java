@@ -72,7 +72,7 @@ public class EmployeeService {
         }
         // パスワードが空白ならばDB値の値をそのまま維持する
         if ("".equals(employee.getPassword())) {
-            updateEmployee.setPassword(employee.getPassword());
+            updateEmployee.setPassword(updateEmployee.getPassword());
         }
 
         // 名前を入力値で更新する
