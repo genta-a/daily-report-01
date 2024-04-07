@@ -63,6 +63,7 @@ public class EmployeeService {
             // パスワード正常でないならエラー結果を返す
             ErrorKinds result = employeePasswordCheck(employee);
             if (result != ErrorKinds.CHECK_OK) {
+                updateEmployee.setName(employee.getName());
                 return result;
             }
 
