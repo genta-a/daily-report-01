@@ -107,7 +107,7 @@ public class EmployeeController {
             return "employees/update";
         }else {
             model.addAttribute("employee", employee);
-            return "employee/update";
+            return "employees/update";
             }
     }
 
