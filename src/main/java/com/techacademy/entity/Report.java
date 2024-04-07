@@ -1,4 +1,4 @@
-/*
+
 package com.techacademy.entity;
 
 import java.sql.Date;
@@ -65,4 +65,3 @@ public class Report {
     private LocalDateTime updatedAt;
 
 }
-*/
