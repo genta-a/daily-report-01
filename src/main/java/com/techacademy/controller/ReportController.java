@@ -17,24 +17,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.techacademy.constants.ErrorKinds;
 import com.techacademy.constants.ErrorMessage;
 
-//import com.techacademy.entity.Report;
-//import com.techacademy.service.Report;
+import com.techacademy.entity.Report;
+import com.techacademy.service.ReportService;
 
 @Controller
 @RequestMapping("reports")
 public class ReportController {
 
-  //  private final ReportService reportService;
+  private final ReportService reportService;
 
     @Autowired
-//    public ReportController(ReportService reportService) {
-//        this.reportService = reportService;
-//    }
+    public ReportController(ReportService reportService) {
+        this.reportService = reportService;
+    }
 
     // 日報一覧画面
 
 @GetMapping
     public String list(Model model) {
+
+        model.addAttribute("listSize", reportService.findAll().size());
+        model.addAttribute("reportList", reportService.findAll());
+
         return "reports/list";
     }
 }

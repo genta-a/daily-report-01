@@ -52,7 +52,7 @@ public class EmployeeService {
         return ErrorKinds.SUCCESS;
     }
 
-
+    //従業員更新
     @Transactional
     public ErrorKinds update(String code, Employee employee) {
         // DB検索結果を更新対象としてupdateEmployeeに格納

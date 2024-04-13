@@ -1,10 +1,8 @@
-
 package com.techacademy.entity;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.validator.constraints.Length;
 
@@ -13,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -24,6 +24,10 @@ import lombok.Data;
 public class Report {
 
 
+    @ManyToOne
+    @JoinColumn(name = "employee_code", referencedColumnName = "code", nullable = false)
+    private Employee employee;
+
 
     // ID
     @Id
@@ -34,7 +38,7 @@ public class Report {
     @Column(nullable = false)
     @NotEmpty
     @Length(max = 20)
-    private Date date;
+    private LocalDate reportDate;
 
     // タイトル
     @Column(length = 100, nullable = false)
@@ -50,7 +54,7 @@ public class Report {
     @Column(length = 10)
     @NotEmpty
     @Length(max = 10)
-    private String employeeCode;
+    private String employeecode;
 
     // 削除フラグ(論理削除を行うため)
     @Column(columnDefinition="TINYINT", nullable = false)
@@ -63,5 +67,6 @@ public class Report {
     // 更新日時
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
 
 }
